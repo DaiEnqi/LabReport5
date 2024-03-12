@@ -1,5 +1,5 @@
 Part 1: Debugging Scenario
-1. Student: Hi, I come across some problems when running the ListExamples. Besides the";" I forgot, it says ```NoClassDefFoundError: ListEx``` but I checked that I have defined the ListEx in my ListExamples.java file. I think there might be something wrong with some of the arguments in the defination of the Filter?
+1. Student: Hi, I come across some problems when running the ListExamples. Besides the";" I forgot, it says ```incompatible types: List<String> cannot be converted to StrChecker``` but I checked that I have defined the ListEx well in my ListExamples.java file. I think there might be something wrong with some of the arguments in the defination of the Filter?
    ![Image](Symptoms_1.png)
 2. David(TA): That's a good guess. You might try using debugger to find the bug!
    Try
@@ -12,8 +12,7 @@ And see what will it say?
 ```
 ListExamples.java:10: error: <identifier> expected
         static List<String> filter(StrChecker sc, List<String>) {
-                                                              ^
-ListExamples.java:15: error: ';' expected
+         ListExamples.java:15: error: ';' expected
                     result.add(s)
                                  ^
 2 errors
