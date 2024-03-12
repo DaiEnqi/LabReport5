@@ -1,6 +1,6 @@
 Part 1: Debugging Scenario
-1. Student: Hi, I come across some problems when running the ListExamples. It says ```NoClassDefFoundError: ListEx``` but I checked that I have defined the ListEx in my ListExamples.java file. I think there might be something wrong with some of the arguments in the defination of the Filter?
-   ![Image](Symptom1.png)
+1. Student: Hi, I come across some problems when running the ListExamples. Besides the";" I forgot, it says ```NoClassDefFoundError: ListEx``` but I checked that I have defined the ListEx in my ListExamples.java file. I think there might be something wrong with some of the arguments in the defination of the Filter?
+   ![Image](Symptoms_1.png)
 2. David(TA): That's a good guess. You might try using debugger to find the bug!
    Try
    ```
@@ -60,7 +60,7 @@ interface StrChecker { boolean checkString(String s); }
         private static List<String> result = new ArrayList<>();
         // Returns a new list that has only the elements of the
         // input where the given StringChecker returns true
-        static List<String> filter(StrChecker sc, List<string> list) {
+        static List<String> filter(StrChecker sc, List<String> list) {
             if(list.size() == 0) { return list; }
             result.clear();
             for(String s: list) {
