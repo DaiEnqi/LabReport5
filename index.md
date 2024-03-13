@@ -92,7 +92,7 @@ List<String> s1 = Arrays.asList("a", "b", "c", "d", "a");
 List<String> s2 = Arrays.asList("c", "a", "a", "a");
 ```
 
-Since in the 39th line the error happened, I guess the expect of s2 has some inpact on the expect of s1 thus they might be both```[a, a, a]>```.
+Since in the 39th line the error happened, I guess the expect of s2 has some inpact on the expect of s1 thus they might be both```<[a, a, a]>```.
 
 2.David(TA): Good guess! Again, you might try using debugger to find the bug!
 Try
