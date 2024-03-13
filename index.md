@@ -65,6 +65,8 @@ Student: Ohh I realize that the types for the arguments of filter in the wrong o
 
 The second bug(s):
 Student: Hii, I have fixed the bugs above but after I recompiled and rerun the test, there's another error!
+
+
 ```
 [user@sahara ~/Student]$ bash test.sh 
 JUnit version 4.13.2
@@ -82,22 +84,28 @@ at TestListExamples.testFilter2(TestListExamples.java:39)
 FAILURES!!!
 Tests run: 2,  Failures: 1
 ```
+
 It says that ```expected:<[a, a]> but was:<[a, a, a]>```. I think the failure-induce input is 
+
 ```
 List<String> s1 = Arrays.asList("a", "b", "c", "d", "a");
 List<String> s2 = Arrays.asList("c", "a", "a", "a");
 ```
+
 Since in the 39th line the error happened, I guess the expect of s2 has some inpact on the expect of s1 thus they might be both```[a, a, a]>```.
 
 2.David(TA): Good guess! Again, you might try using debugger to find the bug!
 Try
+
 ```
 javac -g -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar *.java
 jdb -classpath .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar org.junit.runner.JUnitCore TestListExamples
 ```
+
 And see what will it say?(Or you can also put those commands into a "sh" file.The use ```stop``` ,```locals```... to help you find the bugs and fix them!
 
 3. The terminal output:
+
 ```
 [user@sahara ~/Student]$ bash debug.sh 
 Initializing jdb ...
@@ -114,8 +122,8 @@ Set deferred breakpoint TestListExamples:39
 .
 Breakpoint hit: "thread=main", TestListExamples.testFilter2(), line=39 bci=129
 39            assertEquals(expect1, result1);
-
 ```
+
 
 ```
 main[1] locals
@@ -136,6 +144,7 @@ main[1] print ListEx.result
 ```
 
 This preliminarily proved my guess by showing that the result1 is the same as result 2, being ```[a, a, a]``` . The let's stop at two steps before it generates the result2.
+
 
 ```
 [user@sahara ~/Student]$ bash debug.sh 
@@ -165,8 +174,10 @@ result1 = instance of java.util.ArrayList(id=1056)
 main[1] print result1
  result1 = "[a, a]"
 ```
+
 The result1 is now ```"[a, a]"```!! So that my guess is correct, the value of result2 covers that of result1. After check on the code in ListExamples.java, I found that I should difine the``` List<String> result``` after the filter method so that each time I use that methond, I can always produce a new arraylist to store the value of result and there is no need to think of the case```list.size() == 0```.
 After fixing that, my code is  
+
 ```
 import java.util.Arrays;
 import java.util.List;
@@ -188,7 +199,9 @@ interface StrChecker { boolean checkString(String s); }
         }
 }
 ```
+
 for the ListExamples.java. And then the test passes finally!!!
+
 ```
 [user@sahara ~/Student]$ bash test.sh 
 JUnit version 4.13.2
@@ -200,6 +213,7 @@ OK (2 tests)
 
 4.All the information needed about the setup:
 1). The file & directory structure needed:
+
 ```
 -Student
   -lib
