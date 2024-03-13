@@ -1,22 +1,24 @@
 Part 1: Debugging Scenario
 The first bug(s):
-1. Student: Hi, I come across some problems when running the ListExamples. Besides the";" I forgot, it says ```java.lang.NoSuchMethodError: 'java.util.List ListEx.filter(java.util.List, StrChecker)'``` at both 20th and 36th line but I checked that I have defined the ListEx well in my ListExamples.java file. I think there might be something wrong with some of the arguments in the defination of the Filter?
+1  Student: Hi, I come across some problems when running the ListExamples. Besides the";" I forgot, it says ```java.lang.NoSuchMethodError: 'java.util.List ListEx.filter(java.util.List, StrChecker)'``` at both 20th and 36th line but I checked that I have defined the ListEx well in my ListExamples.java file. I think there might be something wrong with some of the arguments in the defination of the Filter?
 
 ![Image](Symptom-1.png)
-2. David(TA): That's a good guess. You might try using debugger to find the bug!
+2  David(TA): That's a good guess. You might try using debugger to find the bug!
    Try
    ```
    javac -g -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar *.java
    jdb -classpath .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar org.junit.runner.JUnitCore TestListExamples
    ```
 And see what will it say?(Or you can also put those commands into a "sh" file.The use ```stop``` ,```locals```... to help you find the bugs and fix them!
-3. My jdb "sh" file:
+3  My jdb "sh" file
+
 ```
 javac -g -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar *.java
 jdb -classpath .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar org.junit.runner.JUnitCore TestListExamples
-
 ```
+
 The terminal output:
+
 
 ```
 bash debug.sh 
