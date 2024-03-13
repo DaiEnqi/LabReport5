@@ -70,7 +70,6 @@ interface StrChecker { boolean checkString(String s); }
             return result;
         }
 }
-
 ```
 
 Content of TestListExamples:
